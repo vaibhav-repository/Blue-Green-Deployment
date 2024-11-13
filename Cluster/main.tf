@@ -162,14 +162,18 @@ EOF
 resource "aws_iam_role_policy_attachment" "devopsshack_node_group_role_policy" {
   role       = aws_iam_role.devopsshack_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+  depends_on = [aws_iam_role.devopsshack_node_group_role]
 }
 
 resource "aws_iam_role_policy_attachment" "devopsshack_node_group_cni_policy" {
   role       = aws_iam_role.devopsshack_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+  depends_on = [aws_iam_role.devopsshack_node_group_role]
 }
 
 resource "aws_iam_role_policy_attachment" "devopsshack_node_group_registry_policy" {
   role       = aws_iam_role.devopsshack_node_group_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  depends_on = [aws_iam_role.devopsshack_node_group_role]
 }
+
